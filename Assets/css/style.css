@@ -16,6 +16,7 @@ body {
     background-color: var(--bgcbody);    
 }
 
+/* Adding h1 and h2 styling*/
 h1 {
     font-size: 3rem;
 }
@@ -24,6 +25,7 @@ h2 {
     font-size: 1.5rem;
 }
 
+/* Adding p styling*/
 p {
     font-size: 1.5rem;
     text-align: justify;
@@ -88,8 +90,8 @@ a:hover {
     justify-content: flex-start;
 }
 
+/* Adding style to the quiz container using an id */
 #quizQuestions {
-
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -97,6 +99,7 @@ a:hover {
     justify-content: center;
 }
 
+/* Adding style to the start quiz button using an id */
 #startQuiz{
     margin-top: 50px;
     padding: 20px;
@@ -104,6 +107,7 @@ a:hover {
     background-color: var(--buttonhover);
 }
 
+/* Adding style to start quiz button when hovering */
 #startQuiz:hover {
     background-color: var(--button);
     color: white;
