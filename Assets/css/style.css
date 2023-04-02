@@ -4,7 +4,7 @@
     --bgcheader: #240046;
     --button: #5a189a;
     --buttonhover: #fdc500;
-    --answer: #ff7900;
+    --answer: #ff8500;
     --answerhover: #ff9e00;
     --answerright: #347303;
     --answerwrong: #830303;
@@ -13,15 +13,29 @@
 /* Adding body styling*/
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: var(--bgcbody);
+    background-color: var(--bgcbody);    
 }
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1.5rem;
+    text-align: justify;
+    margin-left: 220px;
+    margin-right: 220px;
+} 
 
 /* Adding style to the header section using and id */
 #headerStyle {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    font-size: 1.2rem;
     color: white;
     background-color: var(--bgcheader);
     padding: 20px;
@@ -54,4 +68,43 @@ a {
 /* Adding style to the a when hovering */
 a:hover {
     color: black;
+}
+
+/* Adding style to the main container using an id */
+
+#wrapper {
+    margin-top: 50px;
+    margin-left: 350px;
+    margin-right: 350px;
+    min-height: 600px;
+    padding: 30px;
+    border: 7px solid var(--bgcheader);
+    background-image: url("../images/quizbgc.jpg");
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#quizQuestions {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#startQuiz{
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--buttonhover);
+}
+
+#startQuiz:hover {
+    background-color: var(--button);
+    color: white;
 }
