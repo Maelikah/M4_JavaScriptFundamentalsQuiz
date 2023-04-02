@@ -1,0 +1,40 @@
+:root {
+    --bgcbody: #ffff;
+    --bgcheader: #CDC7AB;
+    --buttonhover: #2E294E;
+    --button: #5D689B;
+    --question: #FFD400;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--bgcbody);
+}
+
+#headerStyle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    color: white;
+    background-color: var(--bgcheader);
+    padding: 20px;
+}
+
+.headerContents {
+    display: flex;
+    min-height: 50px;
+    padding: 15px;
+    border-radius: 59px;
+    background-color: var(--button);
+    align-items: center;
+    text-align: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    
+    
+
+}
