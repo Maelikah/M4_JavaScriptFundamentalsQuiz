@@ -33,4 +33,27 @@ var quizQuestions = [
     },
 ]; 
 
+// console log to see what was logged
 console.log(quizQuestions);
+
+// Declare variables that will allow us access the DOM
+var mainwrapper = document.querySelector("#wrapper");
+var divquizQuestions = document.querySelector("#quizQuestions");
+var ulquizList = document.querySelector("#quizList");
+var divquizTimer = document.querySelector("#timer");
+var btnstarQuiz = document.querySelector("#startQuiz");
+
+// Declare variable for score
+var score = 0;
+// Declare variable to identify Question Object (index)
+var questionIndex = 0;
+// Declare variables related to timer
+var timeLeft = 60;
+var timePenalty = 10;
+
+divquizTimer.textContent = "Time : 01:00";
+
+// Add event listener for Start Quiz button using StarQuiz variable
+starQuiz.addEventListener("click", function(){
+divquizTimer.textContent = "01:00"
+});

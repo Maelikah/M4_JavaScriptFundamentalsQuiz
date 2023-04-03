@@ -59,6 +59,7 @@ p {
 .headerContents:hover {
     background-color: var(--buttonhover);
     color: black;
+    cursor: pointer;
 } 
 
 /* Adding style to the a contents */
@@ -70,6 +71,12 @@ a {
 /* Adding style to the a when hovering */
 a:hover {
     color: black;
+}
+
+
+/* Adding style to the timer placeholder using an id */
+#timer{
+    font-size: 1.5rem;
 }
 
 /* Adding style to the main container using an id */
@@ -111,6 +118,7 @@ a:hover {
 #startQuiz:hover {
     background-color: var(--button);
     color: white;
+    cursor: pointer;
 }
 
 /* Adding media queries */
