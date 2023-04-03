@@ -43,17 +43,56 @@ var ulquizList = document.querySelector("#quizList");
 var divquizTimer = document.querySelector("#timer");
 var btnstarQuiz = document.querySelector("#startQuiz");
 
+
 // Declare variable for score
 var score = 0;
 // Declare variable to identify Question Object (index)
 var questionIndex = 0;
 // Declare variables related to timer
 var timeLeft = 60;
+var timeleftInterval = 0;
 var timePenalty = 10;
 
-divquizTimer.textContent = "Time : 01:00";
+divquizTimer.textContent = "Time : 00:00";
 
-// Add event listener for Start Quiz button using StarQuiz variable
-starQuiz.addEventListener("click", function(){
-divquizTimer.textContent = "01:00"
+
+
+// Add event listener for Start Quiz button using StartQuiz variable
+startQuiz.addEventListener("click", function(){
+    divquizTimer.textContent = "Time : 01:00"
+    timeleftInterval = setInterval(function() {
+        timeLeft--;
+        updateTimer();
+        if (timeLeft === 0) {
+            clearInterval(timeleftInterval);
+            timesUp();
+        } 
+    },1000);
 });
+
+// Create timeLeft countdown function: updateTimer
+function updateTimer() {
+    var minutes = Math.floor(timeLeft / 60);
+    var seconds = timeLeft % 60;
+    var secondsFormat;
+    if (seconds <10) {
+        secondsFormat = "0" + seconds
+    } else {
+        secondsFormat = seconds 
+    }
+    divquizTimer.textContent = "Time : 0" + minutes + ":"+secondsFormat; 
+}
+
+// Create timesUp function to be used when timer reaches zero
+function timesUp() {
+    mainwrapper.innerHTML = "";
+    mainwrapper.style.backgroundImage = "url('assets/images/tup.png')"; 
+
+    //Create Elements
+    var timesupH1 = document.createElement("h1");
+    var timesupP = document.createElement("p");
+    var timesupLabel = document.createElement("label");
+    var timesupInput = document.createElement("input");
+    var timesupbtn = document.createElement("button");
+
+}
