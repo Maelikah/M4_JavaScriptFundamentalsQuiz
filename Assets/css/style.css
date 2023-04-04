@@ -25,13 +25,18 @@ h2 {
     font-size: 1.5rem;
 }
 
-/* Adding p styling*/
-p {
+/* Adding p & label  styling*/
+p, label {
     font-size: 1.5rem;
     text-align: justify;
     margin-left: 220px;
     margin-right: 220px;
 } 
+
+/* Adding input styling*/
+input {
+    font-size: 1.5rem;
+}
 
 /* Adding style to the header section using and id */
 #headerStyle {
@@ -108,6 +113,7 @@ a:hover {
 
 /* Adding style to the start quiz button using an id */
 #startQuiz{
+    font-size: 1.5rem;
     margin-top: 50px;
     padding: 20px;
     border-radius: 15px;
@@ -135,7 +141,7 @@ a:hover {
         font-size: 2rem;  
     }
 
-    p {
+    p, label {
         font-size: 1.5rem;
         margin-left: 220px;
         margin-right: 220px;
@@ -166,7 +172,7 @@ a:hover {
         font-size: 1.5rem;  
     }
 
-    p {
+    p, label {
         font-size: 1.5rem;
         text-align: justify;
         margin-left: 45px;
@@ -187,7 +193,7 @@ a:hover {
 
         margin-left: 120px;
         margin-right: 120px;
-        min-height: 700px;
+        min-height: 500px;
         padding: 15px;
         
 
@@ -207,8 +213,8 @@ a:hover {
         font-size: 1.5rem;  
     }
 
-    p {
-        font-size: 1.5rem;
+    p, label {
+        font-size: 1.2rem;
         text-align: justify;
         margin-left: 5px;
         margin-right: 5px;
@@ -245,12 +251,17 @@ a:hover {
         font-size: 13px;  
     }
 
-    p {
+    p, label {
         font-size: 10px;
         text-align: justify;
         margin-left: 5px;
         margin-right: 5px;
-    } 
+    }
+    
+    input {
+        font-size: 10px;
+    }
+    
     #headerStyle {
         width: 100%;
         padding: 10px;

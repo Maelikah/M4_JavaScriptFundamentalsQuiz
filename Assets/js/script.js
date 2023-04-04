@@ -85,14 +85,58 @@ function updateTimer() {
 
 // Create timesUp function to be used when timer reaches zero
 function timesUp() {
-    mainwrapper.innerHTML = "";
+    //clear data inside div with quizQuestions id
+    divquizQuestions.innerHTML = "";
+    //remove the start quiz button
+    btnstarQuiz.remove();
+    //change bgc when time is up
     mainwrapper.style.backgroundImage = "url('assets/images/tup.png')"; 
 
-    //Create Elements
+    //Create variables for Elements
     var timesupH1 = document.createElement("h1");
     var timesupP = document.createElement("p");
     var timesupLabel = document.createElement("label");
     var timesupInput = document.createElement("input");
     var timesupbtn = document.createElement("button");
 
+    // set text content for variables
+
+
+
+
 }
+
+divquizQuestions.innerHTML = "";
+btnstarQuiz.remove();
+mainwrapper.style.backgroundImage = "url('assets/images/tup.png')"; 
+var timesupH1 = document.createElement("h1");
+var timesupP = document.createElement("p");
+var timesupLabel = document.createElement("label");
+var timesupInput = document.createElement("input");
+var timesupbtn = document.createElement("button");
+
+
+// set text content for variables
+timesupH1.textContent = "Time's Up!";
+timesupP.textContent = "Your final score is: ";
+timesupLabel.textContent = "Please input your initials: ";
+timesupbtn.textContent = "Submit";
+
+// set attributes for input
+timesupInput.setAttribute("type", "text");
+timesupInput.setAttribute("id", "initials");
+timesupInput.textContent = "";
+
+// set atrributes for the timesupbtn
+timesupbtn.setAttribute("type","submit");
+timesupbtn.setAttribute("id","startQuiz");
+
+// append variables to the div and the label, set some style attributes to improve UX
+divquizQuestions.appendChild(timesupH1);
+timesupH1.style.marginBottom = '60px';
+divquizQuestions.appendChild(timesupP);
+timesupP.style.marginBottom = '60px';
+divquizQuestions.appendChild(timesupLabel);
+timesupLabel.appendChild(timesupInput);
+timesupInput.size = 5;
+divquizQuestions.appendChild(timesupbtn);
