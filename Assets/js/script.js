@@ -47,15 +47,15 @@ var btnstarQuiz = document.querySelector("#startQuiz");
 // Declare variable for score
 var score = 0;
 // Declare variable to identify Question Object (index)
-var questionIndex = 0;
+var Index = 0;
 // Declare variables related to timer
 var timeLeft = 60;
 var timeleftInterval = 0;
 var timePenalty = 10;
-
+// Display Timer value on header
 divquizTimer.textContent = "Time : 00:00";
-
-
+// Create variable to display ul
+var quizUl = document.createElement("ul");
 
 // Add event listener for Start Quiz button using StartQuiz variable
 startQuiz.addEventListener("click", function(){
@@ -68,6 +68,7 @@ startQuiz.addEventListener("click", function(){
             timesUp();
         } 
     },1000);
+    renderQuestions(Index);
 });
 
 // Create timeLeft countdown function: updateTimer
@@ -82,6 +83,13 @@ function updateTimer() {
     }
     divquizTimer.textContent = "Time : 0" + minutes + ":"+secondsFormat; 
 }
+
+// Create renderQuestions function
+function renderQuestions(Index) {
+    
+
+}
+
 
 // Create timesUp function to be used when timer reaches zero
 function timesUp() {
@@ -100,43 +108,140 @@ function timesUp() {
     var timesupbtn = document.createElement("button");
 
     // set text content for variables
+    timesupH1.textContent = "Time's Up!";
+    timesupP.textContent = "Your final score is: ";
+    timesupLabel.textContent = "Please input your initials: ";
+    timesupbtn.textContent = "Submit";
 
+    // set attributes for input
+    timesupInput.setAttribute("type", "text");
+    timesupInput.setAttribute("id", "initials");
+    timesupInput.textContent = "";
 
+    // set atrributes for the timesupbtn
+    timesupbtn.setAttribute("type","submit");
+    timesupbtn.setAttribute("id","startQuiz");
 
+    // append variables to the div and the label, set some style attributes to improve UX
+    divquizQuestions.appendChild(timesupH1);
+    timesupH1.style.marginBottom = '60px';
+    divquizQuestions.appendChild(timesupP);
+    timesupP.style.marginBottom = '60px';
+    divquizQuestions.appendChild(timesupLabel);
+    timesupLabel.appendChild(timesupInput);
+    timesupInput.size = 5;
+    divquizQuestions.appendChild(timesupbtn);
 
+    // add event listener for timesupbtn
+    timesupbtn.addEventListener("click", function() {
+        //console log comment to set reviewer to code related to the timesupbtn event listener
+        console.log("--------------------------------\nlogs related to timesupbtn event listener :");
+        // create variable for initials
+        var initials = timesupInput.value;
+        
+        // force user to enter value
+        if (initials === "") {
+            console.log("* Alert window must show if user clicks submit without initials input.\nUser can't submit the form without that input");
+            alert("Please input your initials");
+        } else {
+            //console log initials var
+            console.log("* Var Initials value: " + initials);
+            //create finalScore var to use for local storage
+            var finalScore = {
+                initials: initials,
+                score: score
+            }
+            //console log finalScore var
+            console.log("* Var final score:\nInitials: " + finalScore.initials + "\nScore: " + finalScore.score);
+        }
+
+    });
 }
 
+
+// Clear data inside div with quizQuestions id
 divquizQuestions.innerHTML = "";
+quizUl.innerHTML = "";
+
+// Remove the start quiz button
 btnstarQuiz.remove();
-mainwrapper.style.backgroundImage = "url('assets/images/tup.png')"; 
-var timesupH1 = document.createElement("h1");
-var timesupP = document.createElement("p");
-var timesupLabel = document.createElement("label");
-var timesupInput = document.createElement("input");
-var timesupbtn = document.createElement("button");
+
+// Create variables for the function
+var quizH2 = document.createElement("h2");
+
+// Create a for loop that gets data based on questions length
+for (var i = 0; i<quizQuestions.length; i++ ) {
+    var displayQuestion = quizQuestions[Index].question;
+    var displayChoices = quizQuestions[Index].choices;
+    // append the question to the div container
+    divquizQuestions.appendChild(quizH2);
+    // Display the question in the H2 element created above
+    quizH2.textContent = displayQuestion;
+}
 
 
-// set text content for variables
-timesupH1.textContent = "Time's Up!";
-timesupP.textContent = "Your final score is: ";
-timesupLabel.textContent = "Please input your initials: ";
-timesupbtn.textContent = "Submit";
 
-// set attributes for input
-timesupInput.setAttribute("type", "text");
-timesupInput.setAttribute("id", "initials");
-timesupInput.textContent = "";
 
-// set atrributes for the timesupbtn
-timesupbtn.setAttribute("type","submit");
-timesupbtn.setAttribute("id","startQuiz");
 
-// append variables to the div and the label, set some style attributes to improve UX
-divquizQuestions.appendChild(timesupH1);
-timesupH1.style.marginBottom = '60px';
-divquizQuestions.appendChild(timesupP);
-timesupP.style.marginBottom = '60px';
-divquizQuestions.appendChild(timesupLabel);
-timesupLabel.appendChild(timesupInput);
-timesupInput.size = 5;
-divquizQuestions.appendChild(timesupbtn);
+
+
+//-------------------------TIMESUP ------------------------
+// divquizQuestions.innerHTML = "";
+// btnstarQuiz.remove();
+// mainwrapper.style.backgroundImage = "url('assets/images/tup.png')"; 
+// var timesupH1 = document.createElement("h1");
+// var timesupP = document.createElement("p");
+// var timesupLabel = document.createElement("label");
+// var timesupInput = document.createElement("input");
+// var timesupbtn = document.createElement("button");
+
+
+// // set text content for variables
+// timesupH1.textContent = "Time's Up!";
+// timesupP.textContent = "Your final score is: ";
+// timesupLabel.textContent = "Please input your initials: ";
+// timesupbtn.textContent = "Submit";
+
+// // set attributes for input
+// timesupInput.setAttribute("type", "text");
+// timesupInput.setAttribute("id", "initials");
+// timesupInput.textContent = "";
+
+// // set atrributes for the timesupbtn
+// timesupbtn.setAttribute("type","submit");
+// timesupbtn.setAttribute("id","startQuiz");
+
+// // append variables to the div and the label, set some style attributes to improve UX
+// divquizQuestions.appendChild(timesupH1);
+// timesupH1.style.marginBottom = '60px';
+// divquizQuestions.appendChild(timesupP);
+// timesupP.style.marginBottom = '60px';
+// divquizQuestions.appendChild(timesupLabel);
+// timesupLabel.appendChild(timesupInput);
+// timesupInput.size = 5;
+// divquizQuestions.appendChild(timesupbtn);
+
+// // add event listener for timesupbtn
+// timesupbtn.addEventListener("click", function() {
+//     //console log comment to set reviewer to code related to the timesupbtn event listener
+//     console.log("--------------------------------\nlogs related to timesupbtn event listener :");
+//     // create variable for initials
+//     var initials = timesupInput.value;
+    
+//     // force user to enter value
+//     if (initials === "") {
+//         console.log("* Alert window must show if user clicks submit without initials input.\nUser can't submit the form without that input");
+//         alert("Please input your initials");
+//     } else {
+//         //console log initials var
+//         console.log("* Var Initials value: " + initials);
+//         //create finalScore var to use for local storage
+//         var finalScore = {
+//             initials: initials,
+//             score: score
+//         }
+//         //console log finalScore var
+//         console.log("* Var final score: " + finalScore.initials);
+//     }
+
+// });
