@@ -5,7 +5,6 @@ var quizQuestions = [
         question: "Which of the following is NOT a data type in JavaScript?",
         choices: ["Number", "Undefined", "Object", "Null"],
         answer: "Null", 
-    
     },
     //Object 2
     {
@@ -39,23 +38,27 @@ console.log(quizQuestions);
 // Declare variables that will allow us access the DOM
 var mainwrapper = document.querySelector("#wrapper");
 var divquizQuestions = document.querySelector("#quizQuestions");
-var ulquizList = document.querySelector("#quizList");
+var ulquizList = document.querySelector("#quizUl");
 var divquizTimer = document.querySelector("#timer");
 var btnstarQuiz = document.querySelector("#startQuiz");
 
+// Create variables to create elements and add some styling:
+var quizH2 = document.createElement("h2");
+var quizUl = document.createElement("ul");
+quizUl.setAttribute("id", "quizUl");
+var quizComment = document.createElement("div");
 
 // Declare variable for score
 var score = 0;
-// Declare variable to identify Question Object (index)
-var Index = 0;
+// Declare variable to identify Question Object numbering or order (index)
+var qIndex = 0;
 // Declare variables related to timer
 var timeLeft = 60;
 var timeleftInterval = 0;
 var timePenalty = 10;
 // Display Timer value on header
 divquizTimer.textContent = "Time : 00:00";
-// Create variable to display ul
-var quizUl = document.createElement("ul");
+
 
 // Add event listener for Start Quiz button using StartQuiz variable
 startQuiz.addEventListener("click", function(){
@@ -68,7 +71,7 @@ startQuiz.addEventListener("click", function(){
             timesUp();
         } 
     },1000);
-    renderQuestions(Index);
+    renderQuestions(qIndex);
 });
 
 // Create timeLeft countdown function: updateTimer
@@ -84,11 +87,8 @@ function updateTimer() {
     divquizTimer.textContent = "Time : 0" + minutes + ":"+secondsFormat; 
 }
 
-// Create renderQuestions function
-function renderQuestions(Index) {
-    
+// Create renderQuestions function that will display the questions
 
-}
 
 
 // Create timesUp function to be used when timer reaches zero
@@ -157,30 +157,94 @@ function timesUp() {
 
     });
 }
+///////////////////////////////////////////////////////////////////////////////////////
 
-
-// Clear data inside div with quizQuestions id
 divquizQuestions.innerHTML = "";
+//btnstarQuiz.remove();
 quizUl.innerHTML = "";
-
-// Remove the start quiz button
-btnstarQuiz.remove();
-
-// Create variables for the function
-var quizH2 = document.createElement("h2");
-
-// Create a for loop that gets data based on questions length
-for (var i = 0; i<quizQuestions.length; i++ ) {
-    var displayQuestion = quizQuestions[Index].question;
-    var displayChoices = quizQuestions[Index].choices;
-    // append the question to the div container
-    divquizQuestions.appendChild(quizH2);
-    // Display the question in the H2 element created above
-    quizH2.textContent = displayQuestion;
-}
+renderQuestions(qIndex);
 
 
-//quick commit
+
+
+function renderQuestions(qIndex) {
+    // Clears existing data 
+    divquizQuestions.innerHTML = "";
+    btnstarQuiz.remove()
+    quizUl.innerHTML = "";
+
+    // For loop to loop through all info in array
+    for (var i = 0; i < quizQuestions.length; i++) {
+        var displayQuestion = quizQuestions[qIndex].question;
+        var displayChoices = quizQuestions[qIndex].choices;
+        quizH2.textContent = displayQuestion;
+        divquizQuestions.appendChild(quizH2);
+    }
+
+    // New for each for question choices
+    displayChoices.forEach(function (newItem) {
+        var quizLi = document.createElement("li");
+        quizLi.setAttribute("id", "quizLi");
+        quizLi.textContent = newItem;
+        divquizQuestions.appendChild(quizUl);
+        quizUl.appendChild(quizLi);
+        quizLi.addEventListener("click", (compareAnswers));
+    })
+};
+
+// Create function to compare the answer chosen by the user (on click event) vs the correct answer
+function compareAnswers(event) {
+    // Declare variable that will hold the element that triggered the event
+    var clickedChoice = event.target;
+    if (clickedChoice.matches("li")) {
+
+
+        // If the clicked option is correct the score increments by 1 and a message with the correct answer is displayed
+        if (clickedChoice.textContent == quizQuestions[qIndex].answer) {
+            score++;
+            console.log(score);
+            quizComment.textContent = "✔️ You are correct! The answer is:  " + quizQuestions[qIndex].answer;
+        // If the clicked option is incorrect, 10 seconds are substracted from the clock and a message with the correct answer is displayed
+        } else {
+            // Will deduct -5 seconds off secondsLeft for wrong answers
+            timeLeft = timeLeft - timePenalty;
+            quizComment.textContent = "❌ You are incorrect! The answer is:  " + quizQuestions[qIndex].answer;
+        }
+
+        // Question index is incremented by one to show the next question to the user
+        qIndex++;
+
+        // Call function quizEnd() if all questions have been answered
+
+        if (qIndex >= quizQuestions.length) {
+            
+            timesUp();
+            quizComment.textContent = "🏁 You have completed the quiz" + "\n " + "You got  " + score + "/" + questions.length + " Correct!";
+        } else {
+            renderQuestions(qIndex);
+        }
+        divquizQuestions.appendChild(quizComment);
+            
+        }
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

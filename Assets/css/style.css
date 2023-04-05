@@ -90,7 +90,7 @@ a:hover {
     margin-top: 50px;
     margin-left: 350px;
     margin-right: 350px;
-    min-height: 600px;
+    min-height: 700px;
     padding: 30px;
     border: 7px solid var(--bgcheader);
     background-image: url("../images/quizbgc.jpg");
@@ -110,6 +110,29 @@ a:hover {
     flex-direction: column;
     justify-content: center;
 }
+
+
+#quizUl {
+    margin-top: 20px;
+    padding: 15px 15px;
+}
+
+#quizLi {
+    font-size: 1.2rem;
+    border-radius: 15px;
+    background-color: var(--button);
+    margin-top: 10px;
+    padding: 1rem;
+    color: white;   
+}
+
+#quizLi:hover {
+    background-color: var(--buttonhover);
+    color: black;
+    cursor: pointer;
+
+}
+
 
 /* Adding style to the start quiz button using an id */
 #startQuiz{
@@ -152,7 +175,7 @@ a:hover {
 
         margin-left: 220px;
         margin-right: 220px;
-        min-height: 500px;
+        min-height: 600px;
         padding: 5px;
         
 
@@ -193,7 +216,7 @@ a:hover {
 
         margin-left: 120px;
         margin-right: 120px;
-        min-height: 500px;
+        min-height: 600px;
         padding: 15px;
         
 
