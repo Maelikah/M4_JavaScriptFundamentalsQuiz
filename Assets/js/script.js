@@ -21,13 +21,13 @@ var quizQuestions = [
     //Object 4
     {
         question: "What does this operation === do?",
-        choices: ["Compares values", "Compares contents", "Compares values and types", "Compares types"],
+        choices: ["Compares values", "Compares values and types", "Compares contents", "Compares types"],
         answer: "Compares values and types", 
     },
     //Object 5
     {
         question: "Which of the following is used for debugging?",
-        choices: ["prompt", "CSS", "console log", "alert"],
+        choices: ["prompt", "CSS", "alert", "console log"],
         answer: "console log", 
     },
     //Object 6
@@ -73,7 +73,7 @@ startQuiz.addEventListener("click", function(){
         updateTimer();
         if (timeLeft === 0) {
             clearInterval(timeleftInterval);
-            ccalculatedScore = (score *100) /6;
+            calculatedScore = Math.round((score *100)/6);
             timesUp();
         } 
     },1000);
@@ -144,10 +144,10 @@ function compareAnswers(event) {
         // Call function timesup() if all questions have been answered
 
         if (qIndex >= quizQuestions.length) {
-            calculatedScore = (score * 100) / 6;
+            calculatedScore = Math.round((score * 100)/6);
             timesUp();
-            quizComment.setAttribute("style", "background-color: var(--bgcheader)");
-            quizComment.textContent = "🏁 You have completed the quiz" + "\n " + "You got  " + score + "/" + quizQuestions.length + " correct questions!";
+            quizComment.setAttribute("style", "background-color: var(--button)");
+            quizComment.textContent = "🏁 You have completed the quiz." + "\n " + "You got  " + score + "/" + quizQuestions.length + " correct questions!";
         } else {
             //set 1 second timeout to show correct answer before rendering next question, give back that second to the timeleft
             setTimeout(function() {
