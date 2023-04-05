@@ -180,7 +180,7 @@ function timesUp() {
 
     // set text content for variables
     timesupH1.textContent = "The quiz has ended!";
-    timesupP.textContent = "Your final score is: " + calculatedScore;
+    timesupP.textContent = "Your final score is: " + calculatedScore + "%";
     timesupLabel.textContent = "Please input your initials: ";
     timesupbtn.textContent = "Submit";
 
@@ -203,7 +203,7 @@ function timesUp() {
     timesupInput.size = 5;
     divquizQuestions.appendChild(timesupbtn);
 
-    // add event listener for timesupbtn
+    // add event listener for timesupbtn Submit
     timesupbtn.addEventListener("click", function() {
 
         // create variable for initials
@@ -213,7 +213,7 @@ function timesUp() {
         if (initials === "") {
             alert("Please input your initials");
         } else {
-            //create finalScore var to use for local storage
+            //create finalScore var object to use for local storage
             var finalScore = {
                 initials: initials,
                 score: calculatedScore
@@ -221,6 +221,19 @@ function timesUp() {
             //console log finalScore var
             console.log("* Var final score:\nInitials: " + finalScore.initials + "\nScore: " + finalScore.score);
         }
+
+        var highScores = localStorage.getItem("highScores");
+        if (highScores === null) {
+            highScores = [];
+        } else {
+            highScores = JSON.parse(highScores);
+        }
+        highScores.push(finalScore);
+        var newhighScore= JSON.stringify(highScores);
+        localStorage.setItem("highScores", newhighScore);
+        window.location.replace("./highscores.html");
+    
+
 
     });
 }
