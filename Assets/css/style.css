@@ -130,7 +130,13 @@ a:hover {
     background-color: var(--buttonhover);
     color: black;
     cursor: pointer;
+}
 
+#quizComment {
+    font-size: 1.2rem;
+    margin-top: 4rem;
+    padding: 1rem;
+    color: white;
 }
 
 
