@@ -21,7 +21,7 @@ if (highScores !== null) {
     for (var i = 0; i<highScores.length; i++) {
         var hScoresLi = document.createElement("li");
         hScoresLi.setAttribute("id", "hScoresLi");
-        hScoresLi.textContent = highScores[i].initials + " ---------- " + highScores[i].score;
+        hScoresLi.textContent = highScores[i].initials + " ---------- " + highScores[i].score +"%";
         hScoresDiv.appendChild(hScoresLi);
     }
     

@@ -64,7 +64,6 @@ var timePenalty = 5;
 // Display Timer value on header
 divquizTimer.textContent = "Time : 00:00";
 
-
 // Add event listener for Start Quiz button using StartQuiz variable
 startQuiz.addEventListener("click", function(){
     divquizTimer.textContent = "Time : 01:00"
@@ -76,9 +75,7 @@ startQuiz.addEventListener("click", function(){
             calculatedScore = Math.round((score *100)/6);
             timesUp();
         } 
-        
     },1000);
-    
     renderQuestions(qIndex);
 });
 
@@ -235,23 +232,14 @@ function timesUp() {
             highScores = JSON.parse(highScores);
         }
         highScores.push(finalScore);
+        
         //Sort by score
         highScores.sort(function(a,b) {
             return b.score - a.score;
         });
 
         localStorage.setItem("highScores", JSON.stringify(highScores));
-
-        // var newhighScore= JSON.stringify(highScores);
-        // localStorage.setItem("highScores", newhighScore);
         window.location.replace("./highscores.html");
     
     });
 }
-///////////////////////////////////////////////////////////////////////////////////////
-
-// divquizQuestions.innerHTML = "";
-// //btnstarQuiz.remove();
-// quizUl.innerHTML = "";
-// renderQuestions(qIndex);
-

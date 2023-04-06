@@ -111,12 +111,13 @@ a:hover {
     justify-content: center;
 }
 
-
+/* Adding quiz ul styling*/
 #quizUl {
     margin-top: 20px;
     padding: 15px 15px;
 }
 
+/* Adding quiz li styling*/
 #quizLi {
     font-size: 1.2rem;
     border-radius: 15px;
@@ -132,13 +133,13 @@ a:hover {
     cursor: pointer;
 }
 
+/* Adding quiz comment div styling*/
 #quizComment {
     font-size: 1.2rem;
     margin-top: 4rem;
     padding: 1rem;
     color: white;
 }
-
 
 /* Adding style to the start quiz button using an id */
 #startQuiz, #back, #clear {
@@ -156,6 +157,7 @@ a:hover {
     cursor: pointer;
 }
 
+/* Adding highscores li styling*/
 #hScoresLi {
     font-size: 1.2rem;
     background-color: var(--hScores);
