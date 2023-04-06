@@ -165,7 +165,7 @@ function timesUp() {
     //remove the start quiz button
     btnstarQuiz.remove();
     //change bgc when time is up
-    mainwrapper.style.backgroundImage = "url('Assets/images/tup.png')"; 
+    mainwrapper.style.backgroundImage = "url('./Assets/images/tup.png')"; 
     // Set timer to 0 when timeleft - time penalty <= 0
     if (timeLeft-timePenalty <0)  {
         divquizTimer.textContent = "Time : 00:00";
