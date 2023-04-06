@@ -4,16 +4,6 @@
 
 Code Quiz Challenge. The purpose is to generate a JavaScript fundamentals quiz that uses local storage to store highscores and user initials, that shows a timer and alerts the user whether the selected choice was the correct or incorrect answer.
 
-
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
 ## Installation
 
 Installation not required, simply open up the JavaScript Fundamentals html file and click on the Start Quiz button. Answer the questions and submit your initials upon completion. Review highscores and clear the list if desired.
