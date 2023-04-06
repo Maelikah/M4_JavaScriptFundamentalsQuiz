@@ -10,7 +10,7 @@ var hScoresUl = document.createElement("ul");
 
 
 //Change main wrapper background
-hScoresWrapper.style.backgroundImage = "url('assets/images/hsbgc.jpg')"; 
+hScoresWrapper.style.backgroundImage = "url('Assets/images/hsbgc.jpg')"; 
 
 
 // Retrieve highscores from local storage
