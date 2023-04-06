@@ -60,7 +60,7 @@ var qIndex = 0;
 // Declare variables related to timer
 var timeLeft = 60;
 var timeleftInterval = 0;
-var timePenalty = 9;
+var timePenalty = 5;
 // Display Timer value on header
 divquizTimer.textContent = "Time : 00:00";
 
@@ -71,12 +71,14 @@ startQuiz.addEventListener("click", function(){
     timeleftInterval = setInterval(function() {
         timeLeft--;
         updateTimer();
-        if (timeLeft === 0) {
+        if (timeLeft === 0 || qIndex >= quizQuestions.length ) {
             clearInterval(timeleftInterval);
             calculatedScore = Math.round((score *100)/6);
             timesUp();
         } 
+        
     },1000);
+    
     renderQuestions(qIndex);
 });
 
@@ -130,9 +132,9 @@ function compareAnswers(event) {
             score++;
             quizComment.setAttribute("style", "background-color: var(--answerright)");
             quizComment.textContent = "✔️ You are correct! The answer is:  " + quizQuestions[qIndex].answer;
-        // If the clicked option is incorrect, 10 seconds are substracted from the clock and a message with the correct answer is displayed
+        // If the clicked option is incorrect, 5 seconds are substracted from the clock and a message with the correct answer is displayed
         } else {
-            // Will deduct -5 seconds off secondsLeft for wrong answers
+            
             timeLeft = timeLeft - timePenalty;
             quizComment.setAttribute("style", "background-color: var(--answerwrong)");
             quizComment.textContent = "❌ You are incorrect! The answer is:  " + quizQuestions[qIndex].answer;
@@ -146,8 +148,6 @@ function compareAnswers(event) {
         if (qIndex >= quizQuestions.length) {
             calculatedScore = Math.round((score * 100)/6);
             timesUp();
-            quizComment.setAttribute("style", "background-color: var(--button)");
-            quizComment.textContent = "🏁 You have completed the quiz." + "\n " + "You got  " + score + "/" + quizQuestions.length + " correct questions!";
         } else {
             //set 1 second timeout to show correct answer before rendering next question, give back that second to the timeleft
             setTimeout(function() {
@@ -159,7 +159,6 @@ function compareAnswers(event) {
         }
         divquizQuestions.appendChild(quizComment);    
         }
-
 };
 
 // Create timesUp function to be used when timer reaches zero
@@ -170,6 +169,10 @@ function timesUp() {
     btnstarQuiz.remove();
     //change bgc when time is up
     mainwrapper.style.backgroundImage = "url('assets/images/tup.png')"; 
+    // Set timer to 0 when timeleft - time penalty <= 0
+    if (timeLeft-timePenalty <0)  {
+        divquizTimer.textContent = "Time : 00:00";
+    }
 
     //Create variables for Elements
     var timesupH1 = document.createElement("h1");
@@ -202,6 +205,9 @@ function timesUp() {
     timesupLabel.appendChild(timesupInput);
     timesupInput.size = 5;
     divquizQuestions.appendChild(timesupbtn);
+    quizComment.setAttribute("style", "background-color: var(--button)");
+    quizComment.textContent = "🏁 You have completed the quiz." + "\n " + "You got  " + score + "/" + quizQuestions.length + " correct questions!";
+    divquizQuestions.appendChild(quizComment);
 
     // add event listener for timesupbtn Submit
     timesupbtn.addEventListener("click", function() {
@@ -239,151 +245,8 @@ function timesUp() {
 }
 ///////////////////////////////////////////////////////////////////////////////////////
 
-divquizQuestions.innerHTML = "";
-//btnstarQuiz.remove();
-quizUl.innerHTML = "";
-renderQuestions(qIndex);
-
-
-
-
-// function renderQuestions(qIndex) {
-//     // Clears existing data 
-//     divquizQuestions.innerHTML = "";
-//     btnstarQuiz.remove()
-//     quizUl.innerHTML = "";
-
-//     // For loop to loop through all info in array
-//     for (var i = 0; i < quizQuestions.length; i++) {
-//         var displayQuestion = quizQuestions[qIndex].question;
-//         var displayChoices = quizQuestions[qIndex].choices;
-//         quizH2.textContent = displayQuestion;
-//         divquizQuestions.appendChild(quizH2);
-//     }
-
-//     // New for each for question choices
-//     displayChoices.forEach(function (newItem) {
-//         var quizLi = document.createElement("li");
-//         quizLi.setAttribute("id", "quizLi");
-//         quizLi.textContent = newItem;
-//         divquizQuestions.appendChild(quizUl);
-//         quizUl.appendChild(quizLi);
-//         quizLi.addEventListener("click", (compareAnswers));
-//     })
-// };
-
-// // Create function to compare the answer chosen by the user (on click event) vs the correct answer
-// function compareAnswers(event) {
-//     // Declare variable that will hold the element that triggered the event
-//     var clickedChoice = event.target;
-//     if (clickedChoice.matches("li")) {
-
-
-//         // If the clicked option is correct the score increments by 1 and a message with the correct answer is displayed
-//         if (clickedChoice.textContent == quizQuestions[qIndex].answer) {
-//             score++;
-//             console.log(score);
-//             quizComment.textContent = "✔️ You are correct! The answer is:  " + quizQuestions[qIndex].answer;
-//         // If the clicked option is incorrect, 10 seconds are substracted from the clock and a message with the correct answer is displayed
-//         } else {
-//             // Will deduct -5 seconds off secondsLeft for wrong answers
-//             timeLeft = timeLeft - timePenalty;
-//             quizComment.textContent = "❌ You are incorrect! The answer is:  " + quizQuestions[qIndex].answer;
-//         }
-
-//         // Question index is incremented by one to show the next question to the user
-//         qIndex++;
-
-//         // Call function timesup() if all questions have been answered
-
-//         if (qIndex >= quizQuestions.length) {
-//             timesUp();
-//             quizComment.textContent = "🏁 You have completed the quiz" + "\n " + "You got  " + score + "/" + questions.length + " correct questions!";
-//         } else {
-//             renderQuestions(qIndex);
-//         }
-//         divquizQuestions.appendChild(quizComment);    
-//         }
-
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------TIMESUP ------------------------
 // divquizQuestions.innerHTML = "";
-// btnstarQuiz.remove();
-// mainwrapper.style.backgroundImage = "url('assets/images/tup.png')"; 
-// var timesupH1 = document.createElement("h1");
-// var timesupP = document.createElement("p");
-// var timesupLabel = document.createElement("label");
-// var timesupInput = document.createElement("input");
-// var timesupbtn = document.createElement("button");
+// //btnstarQuiz.remove();
+// quizUl.innerHTML = "";
+// renderQuestions(qIndex);
 
-
-// // set text content for variables
-// timesupH1.textContent = "Time's Up!";
-// timesupP.textContent = "Your final score is: ";
-// timesupLabel.textContent = "Please input your initials: ";
-// timesupbtn.textContent = "Submit";
-
-// // set attributes for input
-// timesupInput.setAttribute("type", "text");
-// timesupInput.setAttribute("id", "initials");
-// timesupInput.textContent = "";
-
-// // set atrributes for the timesupbtn
-// timesupbtn.setAttribute("type","submit");
-// timesupbtn.setAttribute("id","startQuiz");
-
-// // append variables to the div and the label, set some style attributes to improve UX
-// divquizQuestions.appendChild(timesupH1);
-// timesupH1.style.marginBottom = '60px';
-// divquizQuestions.appendChild(timesupP);
-// timesupP.style.marginBottom = '60px';
-// divquizQuestions.appendChild(timesupLabel);
-// timesupLabel.appendChild(timesupInput);
-// timesupInput.size = 5;
-// divquizQuestions.appendChild(timesupbtn);
-
-// // add event listener for timesupbtn
-// timesupbtn.addEventListener("click", function() {
-//     //console log comment to set reviewer to code related to the timesupbtn event listener
-//     console.log("--------------------------------\nlogs related to timesupbtn event listener :");
-//     // create variable for initials
-//     var initials = timesupInput.value;
-    
-//     // force user to enter value
-//     if (initials === "") {
-//         console.log("* Alert window must show if user clicks submit without initials input.\nUser can't submit the form without that input");
-//         alert("Please input your initials");
-//     } else {
-//         //console log initials var
-//         console.log("* Var Initials value: " + initials);
-//         //create finalScore var to use for local storage
-//         var finalScore = {
-//             initials: initials,
-//             score: score
-//         }
-//         //console log finalScore var
-//         console.log("* Var final score: " + finalScore.initials);
-//     }
-
-// });
