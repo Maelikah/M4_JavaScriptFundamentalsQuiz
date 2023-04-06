@@ -235,12 +235,17 @@ function timesUp() {
             highScores = JSON.parse(highScores);
         }
         highScores.push(finalScore);
-        var newhighScore= JSON.stringify(highScores);
-        localStorage.setItem("highScores", newhighScore);
+        //Sort by score
+        highScores.sort(function(a,b) {
+            return b.score - a.score;
+        });
+
+        localStorage.setItem("highScores", JSON.stringify(highScores));
+
+        // var newhighScore= JSON.stringify(highScores);
+        // localStorage.setItem("highScores", newhighScore);
         window.location.replace("./highscores.html");
     
-
-
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////

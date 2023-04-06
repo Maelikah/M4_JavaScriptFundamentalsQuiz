@@ -7,15 +7,34 @@ var hScoresClearBtn = document.querySelector("#clear");
 // Create variables for Elements
 
 var hScoresUl = document.createElement("ul");
-var hScoresLi = document.createElement("li");
-hScoresLi.setAttribute("id", "quizLi");
-
-// Declare variables for event listeners and local storage
 
 
 //Change main wrapper background
 hScoresWrapper.style.backgroundImage = "url('assets/images/hsbgc.jpg')"; 
 
 
+// Retrieve highscores from local storage
+var highScores = localStorage.getItem("highScores");
+highScores = JSON.parse(highScores);
 
+if (highScores !== null) {
+    for (var i = 0; i<highScores.length; i++) {
+        var hScoresLi = document.createElement("li");
+        hScoresLi.setAttribute("id", "hScoresLi");
+        hScoresLi.textContent = highScores[i].initials + " ---------- " + highScores[i].score;
+        hScoresDiv.appendChild(hScoresLi);
+    }
+    
+}
+
+// Add event listener for Back button
+hScoresBackBtn.addEventListener("click", function() {
+    window.location.replace("./index.html");
+});
+
+// Add event listener for Clear button
+hScoresClearBtn.addEventListener("click", function() {
+    localStorage.clear();
+    location.reload();
+});
 

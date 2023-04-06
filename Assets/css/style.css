@@ -4,8 +4,8 @@
     --bgcheader: #240046;
     --button: #5a189a;
     --buttonhover: #fdc500;
-    --answer: #ff8500;
-    --answerhover: #ff9e00;
+    --hScores: #164303;
+    --hScoresHover: #078516;
     --answerright: #347303;
     --answerwrong: #830303;
 }
@@ -141,7 +141,7 @@ a:hover {
 
 
 /* Adding style to the start quiz button using an id */
-#startQuiz{
+#startQuiz, #back, #clear {
     font-size: 1.5rem;
     margin-top: 50px;
     padding: 20px;
@@ -150,10 +150,25 @@ a:hover {
 }
 
 /* Adding style to start quiz button when hovering */
-#startQuiz:hover {
+#startQuiz:hover, #back:hover, #clear:hover {
     background-color: var(--button);
     color: white;
     cursor: pointer;
+}
+
+#hScoresLi {
+    font-size: 1.2rem;
+    background-color: var(--hScores);
+    box-shadow: 20px 20px 20px black;
+    margin-top: 25px;
+    padding: 1rem;
+    list-style: none;
+    color: white;   
+}
+
+#hScoresLi:hover {
+    background-color: var(--hScoresHover);
+
 }
 
 /* Adding media queries */
