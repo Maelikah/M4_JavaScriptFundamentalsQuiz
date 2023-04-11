@@ -215,6 +215,7 @@ function timesUp() {
         // force user to enter value
         if (initials === "") {
             alert("Please input your initials");
+            return;
         } else {
             //create finalScore var object to use for local storage
             var finalScore = {
